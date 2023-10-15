@@ -7,13 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Initial';
+  backgroundToggle = false
 
   constructor() {}
 
-
   // methods
-  // onInput(event: any) {
-  //   this.title = (<HTMLInputElement>event.target).value
+  // onClick() {
+  //   console.log("🚀 ~ file: app.component.ts:17 ~ AppComponent ~ onClick ~ click:")
   // }
 
 }
+
+
