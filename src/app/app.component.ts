@@ -12,9 +12,7 @@ export class AppComponent {
   constructor() {}
 
   // methods
-  // onClick() {
-  //   console.log("🚀 ~ file: app.component.ts:17 ~ AppComponent ~ onClick ~ click:")
-  // }
+
 
 }
 
