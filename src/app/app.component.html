@@ -5,8 +5,13 @@
 
   <hr />
 
-  <app-post></app-post>
-  <app-post></app-post>
+  <app-post
+    *ngFor="let post of posts; let index = index"
+    [post]="post"
+  >
+
+
+  </app-post>
 </div>
 
 
