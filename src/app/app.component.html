@@ -1,24 +1,12 @@
-<h1>Hello Angular!</h1>
+<div class="container">
+  <h1>Angular Components</h1>
 
-<!-- <ul>
-  <li *ngFor="let item of items; let index = index">
-  {{index + 1}} <strong>{{item}}</strong>
-  </li>
-</ul> -->
+  <app-post-form></app-post-form>
 
-<ul style="list-style: none">
-  <li *ngFor="let object of objects; let index = index">
-    <p>
-      {{ object.title }}
-      <strong>{{ object.author }}</strong>
-    </p>
-    <ul style="list-style: none">
-      <li *ngFor="let comment of object.comments">
-        <p>
-          <strong>{{ comment.name }}</strong>
-          {{ comment.text }}
-        </p>
-      </li>
-    </ul>
-  </li>
-</ul>
+  <hr />
+
+  <app-post></app-post>
+  <app-post></app-post>
+</div>
+
+
