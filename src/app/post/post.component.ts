@@ -3,6 +3,7 @@ import {
   AfterContentInit,
   AfterViewChecked,
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ContentChild,
   DoCheck,
@@ -14,6 +15,8 @@ import {
   OnInit,
   Output,
   SimpleChanges,
+  ViewEncapsulation,
+
 } from '@angular/core';
 import { Post } from '../app.component';
 
@@ -21,6 +24,8 @@ import { Post } from '../app.component';
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class PostComponent
   implements
@@ -48,41 +53,12 @@ export class PostComponent
   removePost(id: any) {
     this.onRemove.emit(this.post.id);
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(
-      '🚀 ~ file: post.component.ts:20 ~ PostComponent ~ ngOnChanges ~ changes:',
-      changes
-    );
-  }
-  ngOnInit(): void {
-    console.log('🚀 ~ file: post.component.ts:22 ~ PostComponent ~ ngOnInit');
-  }
-  ngDoCheck(): void {
-    console.log(
-      '🚀 ~ file: post.component.ts:29 ~ PostComponent ~ ngDoCheck ~ ngDoCheck:'
-    );
-  }
-  ngAfterContentInit(): void {
-    console.log(
-      '🚀 ~ file: post.component.ts:30 ~ PostComponent ~ ngAfterContentInit ~ ngAfterContentInit:'
-    );
-  }
-  ngAfterContentChecked(): void {
-    console.log(
-      '🚀 ~ file: post.component.ts:52 ~ ngAfterContentChecked ~ ngAfterContentChecked:'
-    );
-  }
-  ngAfterViewInit(): void {
-    console.log(
-      '🚀 ~ file: post.component.ts:57 ~ ngAfterViewInit ~ ngAfterViewInit:'
-    );
-  }
-  ngAfterViewChecked(): void {
-    console.log(
-      '🚀 ~ file: post.component.ts:71 ~ ngAfterViewChecked ~ ngAfterViewChecked:'
-    );
-  }
-  ngOnDestroy(): void {
-    console.log('🚀 ~ file: post.component.ts:77 ~ ngOnDestroy ~ ngOnDestroy:');
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnInit(): void {}
+  ngDoCheck(): void {}
+  ngAfterContentInit(): void {}
+  ngAfterContentChecked(): void {}
+  ngAfterViewInit(): void {}
+  ngAfterViewChecked(): void {}
+  ngOnDestroy(): void {}
 }
