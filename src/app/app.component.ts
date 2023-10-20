@@ -20,4 +20,12 @@ export class AppComponent {
 
   constructor() {}
   // methods
+  removePost(id: number) {
+    console.log("🚀 ~ file: app.component.ts:24 ~ AppComponent ~ removePost ~ id:", id)
+    this.posts = this.posts.filter(post => post.id !== id)
+
+  }
+  updatePosts(post: Post) {
+    this.posts.unshift(post)
+  }
 }
