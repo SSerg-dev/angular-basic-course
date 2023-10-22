@@ -1,7 +1,25 @@
 <div class="container">
   <h1>Angular Components</h1>
   <hr />
-  <p appStyle>
+  <p
+    [appStyle]="'red'"
+    [dStyles]="{
+      border: 'solid 1px #ccc',
+      fontWeight: 'bold',
+      borderRadius: '5px'
+    }"
+  >
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus,
+    laboriosam?
+  </p>
+  <p
+    [appStyle]="'blue'"
+    [dStyles]="{
+      border: 'solid 1px #ccc',
+      fontWeight: 'bold',
+      borderRadius: '5px'
+    }"
+  >
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus,
     laboriosam?
   </p>
