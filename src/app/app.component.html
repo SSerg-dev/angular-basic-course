@@ -7,9 +7,18 @@
   <p>
     {{ e | number:'1.0-0' }}
   </p> -->
-  <p>
+  <!-- <p>
     {{ str | uppercase | lowercase | titlecase }}
   </p>
   <p>{{ str | titlecase | slice : 1 : 5 }}</p>
-  <p>{{ str | titlecase | slice : 1 : -2 }}</p>
+  <p>{{ str | titlecase | slice : 1 : -2 }}</p> -->
+
+  <p>
+    {{ date | date : "MMMM dd, yyyy hh:mm:ss" }}
+  </p>
+
+  <p>{{ float }}</p>
+  <p>{{ float | currency }}</p>
+  <p>{{ float | percent : "2.0-0" }}</p>
+  <pre>{{ obj | json }}</pre>
 </div>

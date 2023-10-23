@@ -10,8 +10,27 @@ export class AppComponent implements OnInit {
 e: number = Math.E
 str: string = 'hello world'
 
+date: Date = new Date()
+
+float: number = 0.42
+
+obj = {
+  a: 1,
+  b: {
+    c: 2,
+    d: {
+      e: 3,
+      f: 4
+    }
+  }
+}
+
   constructor() {}
   // methods
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setInterval(() => {
+      this.date = new Date()
+    }, 1000)
+  }
 
 }
