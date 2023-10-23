@@ -1,67 +1,15 @@
 <div class="container">
-  <h1>Angular Components</h1>
+  <h1>Angular Pipes</h1>
   <hr />
-  <p
-    [appStyle]="'red'"
-    [dStyles]="{
-      border: 'solid 1px #ccc',
-      fontWeight: 'bold',
-      borderRadius: '5px'
-    }"
-  >
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus,
-    laboriosam?
+  <!-- <p>
+    {{ e | number:'2.1-2' }}
   </p>
-  <p
-    [appStyle]="'blue'"
-    [dStyles]="{
-      border: 'solid 1px #ccc',
-      fontWeight: 'bold',
-      borderRadius: '5px'
-    }"
-  >
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus,
-    laboriosam?
+  <p>
+    {{ e | number:'1.0-0' }}
+  </p> -->
+  <p>
+    {{ str | uppercase | lowercase | titlecase }}
   </p>
-  <!--  -->
-  <button class="btn" (click)="isVisible = !isVisible">Toggle</button>
-
-  <!-- <div *ngIf="isVisible" class="wrap">
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam libero
-      soluta sed dicta commodi consectetur neque reprehenderit ducimus nostrum
-      architecto.
-    </p>
-  </div> -->
-
-  <!-- <ng-template [ngIf]="isVisible">
-    <div class="wrap">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam libero
-        soluta sed dicta commodi consectetur neque reprehenderit ducimus nostrum
-        architecto.
-      </p>
-    </div>
-  </ng-template> -->
-
-  <!-- <div *appIfnot="!isVisible" class="wrap">
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam libero
-      soluta sed dicta commodi consectetur neque reprehenderit ducimus nostrum
-      architecto.
-    </p>
-  </div> -->
-
-  <ng-template [appIfnot]="!isVisible" >
-    <div class="wrap">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam libero
-        soluta sed dicta commodi consectetur neque reprehenderit ducimus nostrum
-        architecto.
-      </p>
-    </div>
-  </ng-template>
-
-
-
+  <p>{{ str | titlecase | slice : 1 : 5 }}</p>
+  <p>{{ str | titlecase | slice : 1 : -2 }}</p>
 </div>
