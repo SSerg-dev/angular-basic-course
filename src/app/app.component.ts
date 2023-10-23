@@ -1,36 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-
-e: number = Math.E
-str: string = 'hello world'
-
-date: Date = new Date()
-
-float: number = 0.42
-
-obj = {
-  a: 1,
-  b: {
-    c: 2,
-    d: {
-      e: 3,
-      f: 4
-    }
-  }
-}
+export class AppComponent implements OnInit, OnDestroy {
+  date: Date = new Date()
+  private intervalDate: any = null
 
   constructor() {}
   // methods
   ngOnInit(): void {
-    setInterval(() => {
+   this.intervalDate = setInterval(() => {
       this.date = new Date()
     }, 1000)
   }
+
+  ngOnDestroy(): void {
+      console.log("🚀 ~ file: app.component.ts:21 ~ AppComponent ~ ngOnDestroy ~ ngOnDestroy:")
+      this.intervalDate = null
+
+  }
+
+
 
 }
