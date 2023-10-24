@@ -30,6 +30,14 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor() {}
 
   // methods
+  addPost() {
+    this.posts.unshift(
+      {
+        title: 'new post title',
+        text: 'new post text'
+      }
+    )
+  }
   ngOnInit(): void {
     this.intervalDate = setInterval(() => {
       this.date = new Date();
