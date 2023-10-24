@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface Post {
   title: string;
@@ -14,34 +15,39 @@ export interface Post {
 export class AppComponent implements OnInit, OnDestroy {
   protected date: Date = new Date();
   private intervalDate: unknown = null;
+  protected obs: Date;
 
-  search = '';
-  searchField = 'title';
+  promise: Promise<string> = new Promise<string>((resolve, reject) => {
+    setTimeout(() => {
+      resolve('Promise resolved');
+    }, 4000);
+  });
 
-  posts: Post[] = [
-    { title: 'beer', text: 'the best beer' },
-    { title: 'beer light', text: 'the best beer' },
-    { title: 'vodke', text: 'the best vodka' },
-    { title: 'rom', text: 'text best rom' },
-    { title: 'tekilla', text: 'text best tekilla' },
-    { title: 'coniac', text: 'text best coniac' },
-  ];
+  // result: unknown;
+  // response: unknown = this.promise.then((value) => {
+  //   this.result = value;
+  // });
 
-  constructor() {}
+  observable$: Observable<Date> = new Observable((obs) => {
+    setInterval(() => {
+      obs.next(new Date());
+    });
+  });
+
+  constructor() {
+    this.obs = new Date();
+  }
 
   // methods
-  addPost() {
-    this.posts.unshift(
-      {
-        title: 'new post title',
-        text: 'new post text'
-      }
-    )
-  }
+
   ngOnInit(): void {
     this.intervalDate = setInterval(() => {
       this.date = new Date();
     }, 1000);
+
+    this.observable$.subscribe((obs) => {
+      this.obs = obs;
+    });
   }
   ngOnDestroy(): void {
     this.intervalDate = null;

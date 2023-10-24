@@ -5,15 +5,9 @@
   </p>
   <hr />
 
-  <button class="btn" (click)="addPost()" >Add new post</button>
+  <!-- <p>wait promise... {{ promise | async }}</p> -->
+  <!-- <p>{{result}}</p> -->
+  <p>observable...{{observable$ | async | date : "MMMM dd, yyyy hh:mm:ss" }}</p>
 
-  <button class="btn" (click)="searchField = 'title'">Title</button>
-  <button class="btn" (click)="searchField = 'text'">Text</button>
-
-  <input type="text" [(ngModel)]="search" />
-
-  <div class="card" *ngFor="let post of posts | filter : search : searchField">
-    <h2>{{ post.title }}</h2>
-    <small>{{ post.text }}</small>
-  </div>
+  <p>depricate obs...{{ obs | date : "MMMM dd, yyyy hh:mm:ss"}}</p>
 </div>
