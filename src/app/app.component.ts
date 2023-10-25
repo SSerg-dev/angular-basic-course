@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription, interval } from 'rxjs';
 import { isSubscription } from 'rxjs/internal/Subscription';
-// import {  } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -16,21 +16,28 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.interval$ = interval(1000);
-    this.subscription = this.interval$.subscribe((value) => {
-      console.log('start subscribe:', value);
-    });
+    this.subscribe();
   }
 
   // methods
+  subscribe() {
+    this.subscription = this.interval$
+      .pipe(
+        filter((value) => value % 2 === 0),
+        map((value) => `mapped value ${value}`)
+      )
+      .subscribe((value) => {
+        console.log('start subscribe:', value);
+      });
+  }
+
   stop() {
     this.isSubscription = !this.isSubscription;
     if (this.isSubscription) {
       this.subscription.unsubscribe();
       this.title = 'Start interval';
     } else {
-      this.subscription = this.interval$.subscribe((value) => {
-        console.log('start again subscribe:', value);
-      });
+      this.subscribe();
       this.title = 'Stop interval';
     }
   }
