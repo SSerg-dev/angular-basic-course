@@ -1,13 +1,5 @@
 <div class="container">
-  <h1>Angular Pipes</h1>
-  <p>
-    {{ date | date : "MMMM dd, yyyy hh:mm:ss" }}
-  </p>
+  <h1>Angular RxJS</h1>
   <hr />
-
-  <!-- <p>wait promise... {{ promise | async }}</p> -->
-  <!-- <p>{{result}}</p> -->
-  <p>observable...{{observable$ | async | date : "MMMM dd, yyyy hh:mm:ss" }}</p>
-
-  <p>depricate obs...{{ obs | date : "MMMM dd, yyyy hh:mm:ss"}}</p>
+  <button class="btn" (click)="stop()">{{title}}</button>
 </div>

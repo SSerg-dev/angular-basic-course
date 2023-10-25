@@ -1,11 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
-
-export interface Post {
-  title: string;
-  text: string;
-  id?: number;
-}
+import { Observable, Subscription, interval } from 'rxjs';
+import { isSubscription } from 'rxjs/internal/Subscription';
+// import {  } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -13,43 +9,32 @@ export interface Post {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  protected date: Date = new Date();
-  private intervalDate: unknown = null;
-  protected obs: Date;
-
-  promise: Promise<string> = new Promise<string>((resolve, reject) => {
-    setTimeout(() => {
-      resolve('Promise resolved');
-    }, 4000);
-  });
-
-  // result: unknown;
-  // response: unknown = this.promise.then((value) => {
-  //   this.result = value;
-  // });
-
-  observable$: Observable<Date> = new Observable((obs) => {
-    setInterval(() => {
-      obs.next(new Date());
-    });
-  });
+  subscription!: Subscription;
+  isSubscription: boolean = false;
+  interval$: Observable<number>;
+  title = 'Stop interval';
 
   constructor() {
-    this.obs = new Date();
+    this.interval$ = interval(1000);
+    this.subscription = this.interval$.subscribe((value) => {
+      console.log('start subscribe:', value);
+    });
   }
 
   // methods
-
-  ngOnInit(): void {
-    this.intervalDate = setInterval(() => {
-      this.date = new Date();
-    }, 1000);
-
-    this.observable$.subscribe((obs) => {
-      this.obs = obs;
-    });
+  stop() {
+    this.isSubscription = !this.isSubscription;
+    if (this.isSubscription) {
+      this.subscription.unsubscribe();
+      this.title = 'Start interval';
+    } else {
+      this.subscription = this.interval$.subscribe((value) => {
+        console.log('start again subscribe:', value);
+      });
+      this.title = 'Stop interval';
+    }
   }
-  ngOnDestroy(): void {
-    this.intervalDate = null;
-  }
+
+  ngOnInit(): void {}
+  ngOnDestroy(): void {}
 }
