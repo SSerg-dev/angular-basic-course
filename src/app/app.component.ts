@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription, interval } from 'rxjs';
+import { Observable, Subscription, interval, of } from 'rxjs';
 import { isSubscription } from 'rxjs/internal/Subscription';
 import { map, filter } from 'rxjs/operators';
 
@@ -19,33 +19,37 @@ export class AppComponent implements OnInit, OnDestroy {
     this.interval$ = interval(1000);
     // this.subscribe();
     // -----------------------------
-    const stream$ = new Observable(observer => {
+    const stream$ = new Observable((observer) => {
       setTimeout(() => {
-        observer.next(1)
-      }, 1500)
-
-      setTimeout(() => {
-        observer.complete()
-      }, 2100)
-
-      // setTimeout(() => {
-      //   observer.error('Something went wrong')
-      // }, 2000)
+        observer.next(1);
+      }, 1500);
 
       setTimeout(() => {
-        observer.next(2)
-      }, 2500)
+        observer.complete();
+      }, 2100);
 
-    })
+      setTimeout(() => {
+        observer.error('Something went wrong');
+      }, 2000);
 
-    this.subscr = stream$
-      .subscribe(
-        value => console.log('Next: ', value),
-        error => console.log('Error: ', error),
-        () => console.log('Complete')
-      )
+      setTimeout(() => {
+        observer.next(2);
+      }, 2500);
+    });
+
+    this.subscr = stream$.subscribe(
+      (value) => console.log('Next: ', value),
+      (error) => console.log('Error: ', error),
+      () => console.log('Complete')
+
+      // also recommended
+      // {
+      //   next: (v) => console.log(v),
+      //   error: (e) => console.error(e),
+      //   complete: () => console.info('complete $$$$'),
+      // }
+    );
     // -----------------------------
-
   }
 
   // methods
