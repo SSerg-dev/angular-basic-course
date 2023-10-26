@@ -28,10 +28,13 @@ export class AppComponent implements OnInit, OnDestroy {
         observer.complete()
       }, 2100)
 
-      setTimeout(() => {
-        observer.error('Something went wrong')
-      }, 2000)
+      // setTimeout(() => {
+      //   observer.error('Something went wrong')
+      // }, 2000)
 
+      setTimeout(() => {
+        observer.next(2)
+      }, 2500)
 
     })
 
