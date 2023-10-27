@@ -1,24 +1,27 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AppCounterService } from './services/app-counter.service';
-import { LocalCounterService } from './services/local-counter.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [LocalCounterService]
 })
 export class AppComponent implements OnInit, OnDestroy {
-
-  constructor(
-    protected appCounterService: AppCounterService,
-    protected localCounterService: LocalCounterService
-    ) {
-
-  }
+  form!: FormGroup;
+  constructor() {}
 
   // methods
+  submit() {
+    console.log("🚀 ~ file: app.component.ts:15 ~ AppComponent ~ ngOnInit ~ this.form:", this.form)
+    const formData = {...this.form.value}
+    console.log("🚀 ~ file: app.component.ts:17 ~ AppComponent ~ submit ~ formData:", formData)
+  }
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      email: new FormControl(''),
+      password: new FormControl(null)
+    });
 
-  ngOnInit(): void {}
+  }
   ngOnDestroy(): void {}
 }
