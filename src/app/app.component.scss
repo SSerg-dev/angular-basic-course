@@ -1,7 +1,15 @@
 p {
   font-size: 1.5rem;
-  text-align: left;
+  text-align: center;
 }
 hr {
   border: solid 0.05rem #ddd;
+}
+input {
+  &.ng-invalid.ng-touched {
+    border: solid 1px red;
+  }
+  &.ng-valid.ng-touched {
+    border: solid 1px green;
+  }
 }
