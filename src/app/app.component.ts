@@ -11,13 +11,27 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor() {}
 
   // methods
+  setCapital() {
+    const cityMap = {
+      ru: 'Moscow',
+      ua: 'Kyev',
+      by: 'Minsk',
+    };
+
+    const key = this.form.get('address')?.get('country')?.value;
+    const city = cityMap[key as keyof typeof cityMap];
+
+    this.form.patchValue({
+      address: { city },
+    });
+  }
   submit() {
     if (this.form.valid) {
       const formData = { ...this.form.value };
-      console.log(
-        '🚀 ~ file: app.component.ts:17 ~ AppComponent ~ submit ~ formData:',
-        formData
-      );
+      // console.log(
+      //   '🚀 ~ file: app.component.ts:17 ~ AppComponent ~ submit ~ formData:',
+      //   formData
+      // );
     }
   }
   ngOnInit(): void {
@@ -27,6 +41,10 @@ export class AppComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.minLength(6),
       ]),
+      address: new FormGroup({
+        country: new FormControl('ru'),
+        city: new FormControl('Moscow', Validators.required),
+      }),
     });
   }
   ngOnDestroy(): void {}

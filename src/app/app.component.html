@@ -23,37 +23,48 @@
       <label>Пароль</label>
       <input type="password" placeholder="Пароль" formControlName="password" />
 
-      <pre>{{ form.get("password")?.errors | json }}</pre>
+      <!-- <pre>{{ form.get("password")?.errors | json }}</pre> -->
+      <!-- <pre>{{ form.get("password")?.hasError("required") | json }}</pre> -->
+      <!-- <pre>{{
+        (form.get("password")?.errors)!["minlenght"].requiredLenght | json
+      }}</pre> -->
 
       <div
         *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
         class="validation"
       >
-        <small *ngIf="form.get('password')?.hasError('required')"
-          >Password is not be empty &nbsp;</small
-        >
-        <small>Password lenght small </small>
+        <small *ngIf="form.get('password')?.hasError('required')">
+          Password is not be empty &nbsp;
+        </small>
+
+        <small *ngIf="!form.get('password')?.hasError('minlenght')">
+          Password too short
+          <!-- {{ form.get("password")?.errors!["minlenght"].requiredLenght }} -->
+
+          <!-- Password actual lenght -->
+          <!-- {{ form.get("password")?.errors!["minlenght"].actualLenght }} -->
+        </small>
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" formGroupName="address">
       <h2>Адрес</h2>
 
       <div class="form-control">
         <label>Страна</label>
 
-        <select>
-          <option value="ru">Россия</option>
-          <option value="ua">Украина</option>
-          <option value="by">Беларусь</option>
+        <select formControlName="country">
+          <option value="ru">Russian</option>
+          <option value="ua">Ukraine</option>
+          <option value="by">Belarus</option>
         </select>
       </div>
 
       <div class="form-control">
-        <input type="text" />
+        <input type="text" formControlName="city" placeholder="Город" />
       </div>
 
-      <button class="btn" type="button">Выбрать столицу</button>
+      <button class="btn" type="button" (click)="setCapital()">Выбрать столицу</button>
     </div>
 
     <div class="card">
