@@ -20,6 +20,9 @@
         <small *ngIf="form.get('email')?.hasError('restrictedEmail')"
           >Email {{ form.get("email")?.value }} restricted</small
         >
+        <small *ngIf="form.get('email')?.hasError('uniqEmail')"
+          >Email {{ form.get("email")?.value }} is busy</small
+        >
       </div>
     </div>
 
