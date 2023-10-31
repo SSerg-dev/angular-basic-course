@@ -46,7 +46,8 @@ export class AppComponent implements OnInit, OnDestroy {
         Validators.email,
         Validators.required,
         libValidator.restrictedEmails,
-      ]),
+      ],
+      [libValidator.uniqEmail as any]),
 
       password: new FormControl(null, [
         Validators.required,
@@ -60,6 +61,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
       skills: new FormArray([]),
     });
+
+    // libValidator.start();
   }
   ngOnDestroy(): void {}
 }

@@ -18,7 +18,7 @@
         <!-- <small>Incorrect email &nbsp;</small> -->
 
         <small *ngIf="form.get('email')?.hasError('restrictedEmail')"
-        >Email {{form.get('email')?.value}} restricted</small
+          >Email {{ form.get("email")?.value }} restricted</small
         >
       </div>
     </div>
