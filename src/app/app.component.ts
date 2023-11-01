@@ -12,6 +12,10 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor() {}
 
   // methods
+  get skills() {
+    return this.form.controls['skills'] as FormArray;
+  }
+
   addSkill() {
     const control = new FormControl('', Validators.required);
     // (<FormArray>this.form.get('skills')).push(control)
@@ -38,16 +42,16 @@ export class AppComponent implements OnInit, OnDestroy {
         '🚀 ~ file: app.component.ts:17 ~ AppComponent ~ submit ~ formData:',
         formData
       );
+      this.form.reset();
     }
   }
   ngOnInit(): void {
     this.form = new FormGroup({
-      email: new FormControl('', [
-        Validators.email,
-        Validators.required,
-        libValidator.restrictedEmails,
-      ],
-      [libValidator.uniqEmail as any]),
+      email: new FormControl(
+        '',
+        [Validators.email, Validators.required, libValidator.restrictedEmails],
+        [libValidator.uniqEmail as any]
+      ),
 
       password: new FormControl(null, [
         Validators.required,

@@ -82,9 +82,14 @@
         Добавить умение
       </button>
 
-      <div
+      <!-- <div
         class="form-control"
         *ngFor="let control of form.get('skills')?.value; let _index = index"
+      > -->
+
+      <div
+        class="form-control"
+        *ngFor="let control of skills.controls; let _index = index"
       >
         <label>Skill {{ _index + 1 }}</label>
         <input type="text" [formControlName]="_index" />
