@@ -42,6 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
         '🚀 ~ file: app.component.ts:17 ~ AppComponent ~ submit ~ formData:',
         formData
       );
+      // add clear form
       this.form.reset();
     }
   }
