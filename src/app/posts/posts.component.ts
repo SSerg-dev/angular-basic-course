@@ -33,7 +33,6 @@ export class PostsComponent implements OnInit {
     })
 
     this.route.fragment.subscribe((fragment) => {
-      console.log("🚀 this.route.fragment.subscribe ~ fragment:", fragment)
     })
 
   }
