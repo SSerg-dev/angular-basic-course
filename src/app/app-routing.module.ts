@@ -1,23 +1,27 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { PreloadAllModules, Route, RouterModule } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
+
+const routes: Route[] = [
+  {
+    path: '',
+    component: HomePageComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'about',
+    loadChildren: () =>
+      import('./about-page/about-page.module').then(
+        (m) => m.AboutPageModule
+      ),
+  },
+]
 
 @NgModule({
   imports: [
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: HomePageComponent,
-        pathMatch: 'full',
-      },
-      {
-        path: 'about',
-        loadChildren: () =>
-          import('./about-page/about-page.module').then(
-            (m) => m.AboutPageModule
-          ),
-      },
-    ]),
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules
+    }),
   ],
   exports: [RouterModule],
 })
