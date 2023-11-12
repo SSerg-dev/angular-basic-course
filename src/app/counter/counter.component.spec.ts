@@ -1,10 +1,11 @@
+import { FormBuilder } from '@angular/forms';
 import { CounterComponent } from './counter.component';
 
 describe('CounterComponent', () => {
   let component: CounterComponent;
 
   beforeEach(() => {
-    component = new CounterComponent();
+    component = new CounterComponent( new FormBuilder);
   });
 
   it('should be increment method', () => {
@@ -21,4 +22,15 @@ describe('CounterComponent', () => {
     component.increment();
     expect(result!).toBe(1);
   });
+
+  it('should be create 2 control in form', () => {
+    expect(component.form.contains('login')).toBeTruthy()
+    expect(component.form.contains('email')).toBeTruthy()
+  })
+  it('should be login with validator', () => {
+    const control =component.form.get('login')
+    control?.setValue('')
+    expect(control?.valid).toBeFalsy()
+  })
+
 });
